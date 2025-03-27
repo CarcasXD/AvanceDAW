@@ -12,6 +12,6 @@ namespace AvanceDAW.Models
         [Key]
         [Display(Name = "ID Plato")]
         public int PlatoID { get; set; }
-
+         
     }
 }

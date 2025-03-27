@@ -5,7 +5,7 @@ namespace AvanceDAW.Models
     public class Categorias
     {
         [Key]
-        [Display(Name = "ID Categoría")]
+        [Display(Name = "ID Categoría")] 
         public int CategoriaID { get; set; }
 
         [Display(Name = "Nombre de la Categoría")]

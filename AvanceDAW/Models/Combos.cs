@@ -6,7 +6,7 @@ namespace AvanceDAW.Models
     {
         [Key]
         [Display(Name = "ID Combo")]
-        public int ComboID { get; set; }
+        public int ComboID { get; set; } 
 
         [Display(Name = "Nombre del Combo")]
         [Required(ErrorMessage = "El nombre del combo es obligatorio")]

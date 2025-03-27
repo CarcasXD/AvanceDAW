@@ -11,7 +11,7 @@ namespace AvanceDAW.Models
         [Display(Name = "Nombre del Menú")]
         [Required(ErrorMessage = "El nombre del menú es obligatorio")]
         public string Nombre { get; set; }
-
+         
         [Display(Name = "Descripción")]
         public string? Descripcion { get; set; }
 

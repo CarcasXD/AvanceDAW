@@ -8,7 +8,7 @@ namespace AvanceDAW.Models
         [Display(Name = "ID Plato")]
         public int PlatoID { get; set; }
 
-        [Display(Name = "Nombre del Plato")]
+        [Display(Name = "Nombre del Plato")] 
         [Required(ErrorMessage = "El nombre del plato es obligatorio")]
         public string Nombre { get; set; }
 

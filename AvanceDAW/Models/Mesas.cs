@@ -13,7 +13,7 @@ namespace AvanceDAW.Models
         public int NumeroMesa { get; set; }
 
         [Display(Name = "Capacidad")]
-        [Required(ErrorMessage = "La capacidad es obligatoria")]
+        [Required(ErrorMessage = "La capacidad es obligatoria") ]
         public int Capacidad { get; set; }
 
         [Display(Name = "Estado")]

@@ -14,7 +14,7 @@ namespace AvanceDAW.Models
         [Display(Name = "Cantidad")]
         public int DET_CANTIDAD { get; set; }
 
-        [Display(Name = "Precio")]
+        [Display(Name = "Precio")] 
         public decimal DET_PRECIO { get; set; }
 
         [Display(Name = "Subtotal")]

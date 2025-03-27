@@ -9,7 +9,7 @@ namespace AvanceDAW.Models
         public int MetodoID { get; set; }
 
         [Display(Name = "Nombre")]
-        [Required(ErrorMessage = "El nombre del método de pago es obligatorio")]
+        [Required(ErrorMessage = "El nombre del método de pago es obligatorio")] 
         public string Nombre { get; set; }
 
         [Display(Name = "Descripción")]

@@ -9,7 +9,7 @@ namespace AvanceDAW.Models
         public int PromocionID { get; set; }
 
         [Key]
-        [Display(Name = "ID Plato")]
+        [Display(Name = "ID Plato")] 
         public int? PlatoID { get; set; }
 
         [Key]

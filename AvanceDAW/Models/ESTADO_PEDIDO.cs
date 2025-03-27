@@ -9,7 +9,7 @@ namespace AvanceDAW.Models
         public int ID_ESTADOPEDIDO { get; set; }
 
         [Display(Name = "Nombre del Estado")]
-        [Required(ErrorMessage = "El nombre del estado es obligatorio")]
+        [Required(ErrorMessage = "El nombre del estado es obligatorio")] 
         public string ESTADO_NOMBRE { get; set; }
     }
 }

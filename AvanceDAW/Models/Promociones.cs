@@ -9,7 +9,7 @@ namespace AvanceDAW.Models
         public int PromocionID { get; set; }
 
         [Display(Name = "Descripción")]
-        [Required(ErrorMessage = "La descripción es obligatoria")]
+        [Required(ErrorMessage = "La descripción es obligatoria") ]
         public string Descripcion { get; set; }
 
         [Display(Name = "Descuento (%)")]

@@ -11,7 +11,7 @@ namespace AvanceDAW.Models
         [Display(Name = "ID Plato")]
         public int? PlatoID { get; set; }
 
-        [Display(Name = "ID Combo")]
+        [Display(Name = "ID Combo")] 
         public int? ComboID { get; set; }
 
         [Display(Name = "ID Factura")]

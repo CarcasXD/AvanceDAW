@@ -11,7 +11,7 @@ namespace AvanceDAW.Models
 
         [Display(Name = "ID Menú")]
         public int MenuID { get; set; }
-
+         
         [Display(Name = "ID Plato")]
         public int? PlatoID { get; set; }
 

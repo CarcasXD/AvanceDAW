@@ -12,7 +12,7 @@ namespace AvanceDAW.Models
         public string? UrlFotoEmpleado { get; set; }
 
         [Display(Name = "Nombre")]
-        [Required(ErrorMessage = "El nombre es obligatorio")]
+        [Required(ErrorMessage = "El nombre es obligatorio")] 
         public string Nombre { get; set; }
 
         [Display(Name = "Apellido")]

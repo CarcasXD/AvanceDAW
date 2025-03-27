@@ -8,7 +8,7 @@ namespace AvanceDAW.Models
         [Display(Name = "ID Factura")]
         public int ID { get; set; }
 
-        [Display(Name = "ID Pedido")]
+        [Display(Name = "ID Pedido")] 
         public int PedidoID { get; set; }
 
         [Display(Name = "Fecha")]

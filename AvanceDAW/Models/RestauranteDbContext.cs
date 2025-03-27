@@ -9,7 +9,7 @@ namespace AvanceDAW.Models
         public RestauranteDbContext(DbContextOptions options) : base(options)
         { }
         public DbSet<Categorias> Categorias { get; set; }
-        public DbSet<Platos> Platos { get; set; }
+        public DbSet<Platos> Platos { get; set; } 
         public DbSet<Combos> Combos { get; set; }
         public DbSet<Promociones> Promociones { get; set; }
         public DbSet<Menu> Menus { get; set; }

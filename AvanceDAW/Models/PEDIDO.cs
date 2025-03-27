@@ -10,7 +10,7 @@ namespace AvanceDAW.Models
 
         [Display(Name = "ID Mesa")]
         public int ID_MESA { get; set; }
-
+         
         [Display(Name = "ID Mesero")]
         public int ID_MESERO { get; set; }
 
