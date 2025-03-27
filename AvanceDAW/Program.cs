@@ -12,7 +12,7 @@ builder.Services.AddDbContext<RestauranteDbContext>(opt =>
                 builder.Configuration.GetConnectionString("avanceDbConnection")));
 
 var app = builder.Build();
-
+ 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
