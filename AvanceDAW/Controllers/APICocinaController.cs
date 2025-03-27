@@ -18,7 +18,7 @@ namespace AvanceDAW.Controllers
         }
 
         [HttpGet]
-        Route[("GetPendiente")]
+        [Route("GetPendiente")]
         public IActionResult PedidosPendientes()
         {
             var lista = (from p in _context.PEDIDO
@@ -35,7 +35,7 @@ namespace AvanceDAW.Controllers
         }
 
         [HttpGet]
-        Route[("GetProceso")]
+        [Route("GetProceso")]
         public IActionResult PedidosEnProceso()
         {
             var lista = (from p in _context.PEDIDO
