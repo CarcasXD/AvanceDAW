@@ -22,8 +22,11 @@ namespace AvanceDAW.Models
 
         [Display(Name = "Comentarios")]
         public string DET_COMENTARIOS { get; set; }
+        public virtual Menu_Items MenuItems { get; set; }
+
 
         [Display(Name = "ID Estado Pedido")]
         public int ID_ESTADOPEDIDO { get; set; }
+        public virtual ESTADO_PEDIDO EstadoPedido { get; set; }
     }
 }

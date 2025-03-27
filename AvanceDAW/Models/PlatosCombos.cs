@@ -9,9 +9,14 @@ namespace AvanceDAW.Models
         [Display(Name = "ID Combo")]
         public int ComboID { get; set; }
 
-        [Key]
+        
         [Display(Name = "ID Plato")]
         public int PlatoID { get; set; }
-         
+
+        public virtual Combos Combo { get; set; }
+
+        // Relación con la tabla Plato
+        public virtual Platos Plato { get; set; }
+
     }
 }

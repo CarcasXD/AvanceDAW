@@ -21,6 +21,7 @@ namespace AvanceDAW.Models
         [Display(Name = "ID Promoción")]
         public int? PromocionID { get; set; }
 
-        
+        public virtual Platos Plato { get; set; }
+        public virtual Combos Combo { get; set; }
     }
 }
