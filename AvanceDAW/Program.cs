@@ -1,9 +1,15 @@
+using AvanceDAW.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Formats.Tar;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<>
+builder.Services.AddDbContext<RestauranteDbContext>(opt =>
+            opt.UseSqlServer(
+                builder.Configuration.GetConnectionString("avanceDbConnection")));
 
 var app = builder.Build();
 
