@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvanceDAW", "AvanceDAW\AvanceDAW.csproj", "{8763425D-6446-4BD1-B91A-B7D87ECA7D1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8763425D-6446-4BD1-B91A-B7D87ECA7D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8763425D-6446-4BD1-B91A-B7D87ECA7D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8763425D-6446-4BD1-B91A-B7D87ECA7D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8763425D-6446-4BD1-B91A-B7D87ECA7D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D289E4D-8F72-47E9-B8A7-71910E3087FB}
+	EndGlobalSection
+EndGlobal
