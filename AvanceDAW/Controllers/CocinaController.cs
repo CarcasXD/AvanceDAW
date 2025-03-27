@@ -86,6 +86,7 @@ namespace AvanceDAW.Controllers
     }
 
     // Crear un modelo para enviar a la vista
+    /*
     public class CocinaViewModel
     {
         public List<dynamic> Solicitadas { get; set; }
@@ -95,5 +96,5 @@ namespace AvanceDAW.Controllers
     {
         public int ID_PEDIDO { get; set; }
         public int NumeroMesa { get; set; }
-    }
+    }*/
 }
