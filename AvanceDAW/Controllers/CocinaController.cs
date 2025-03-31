@@ -58,16 +58,18 @@ namespace AvanceDAW.Controllers
                                   NumeroMesa = m.NumeroMesa
                               }).ToList();
 
-            
+
             var enProceso = (from p in _context.PEDIDO
                              join e in _context.ESTADO_PEDIDO on p.ID_ESTADOPEDIDO equals e.ID_ESTADOPEDIDO
                              join m in _context.Mesas on p.ID_MESA equals m.MesaID
-                             where e.ESTADO_NOMBRE == "En Preparacion"
+                             where e.ESTADO_NOMBRE == "En Preparación"
                              select new PedidoViewModel
                              {
                                  ID_PEDIDO = p.ID_PEDIDO,
                                  NumeroMesa = m.NumeroMesa
                              }).ToList();
+
+            
 
             ViewData["Solicitadas"] = pendientes;
             ViewData["EnProceso"] = enProceso;
