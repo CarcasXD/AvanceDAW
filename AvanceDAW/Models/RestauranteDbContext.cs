@@ -8,6 +8,7 @@ namespace AvanceDAW.Models
     {
         public RestauranteDbContext(DbContextOptions options) : base(options)
         { }
+
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Platos> Platos { get; set; } 
         public DbSet<Combos> Combos { get; set; }
@@ -46,6 +47,13 @@ namespace AvanceDAW.Models
                 .WithMany()  // Relación uno a muchos
                 .HasForeignKey(p => p.ID_ESTADOPEDIDO)
                 .OnDelete(DeleteBehavior.Restrict);  // Ajusta el comportamiento de eliminación si es necesario
+
+            // Configurar la relación de PEDIDO con Mesero (Empleado)
+            modelBuilder.Entity<PEDIDO>()
+                .HasOne(p => p.Mesero)  // Relación con Empleados (Mesero)
+                .WithMany()  // El mesero puede estar asociado con muchos pedidos
+                .HasForeignKey(p => p.ID_MESERO) // La clave foránea es ID_MESERO
+                .OnDelete(DeleteBehavior.SetNull); // Configurar el comportamiento en caso de eliminación
 
             // Configurar la tabla 'PEDIDO'
             modelBuilder.Entity<PEDIDO>()
