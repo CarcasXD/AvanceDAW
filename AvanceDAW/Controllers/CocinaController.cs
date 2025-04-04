@@ -110,7 +110,35 @@ namespace AvanceDAW.Controllers
         [HttpPost]
         public async Task<IActionResult> verDetalle(int idPedido) 
         {
+            ViewBag.idPedido = idPedido;
 
+            var detalles = (from dp in _context.DETALLE_PEDIDO
+                            join mi in _context.Menu_Items on dp.ID_MENU equals mi.MenuItemId
+                            join pl in _context.Platos on mi.MenuItemId equals pl.PlatoID into platos
+                            from plato in platos.DefaultIfEmpty()
+                            join c in _context.Combos on mi.MenuItemId equals c.ComboID into combos
+                            from combo in combos.DefaultIfEmpty()
+                            join pr in _context.Promociones on mi.MenuItemId equals pr.PromocionID into promociones
+                            from promocion in promociones.DefaultIfEmpty()
+                            where dp.ID_PEDIDO == idPedido
+                            select new
+                            {
+                                TipoItem = plato != null ? "Plato" :
+                                           combo != null ? "Combo" :
+                                           promocion != null ? "Promocion" : "Desconocido",
+                                NombreItem = plato != null ? plato.Nombre :
+                                             combo != null ? combo.Nombre :
+                                             promocion != null ? promocion.Descripcion : "N/A",
+                                DescripcionItem = plato != null ? plato.Descripcion :
+                                                  combo != null ? combo.Descripcion :
+                                                  promocion != null ? promocion.Descripcion : "N/A",
+                                Cantidad = dp.DET_CANTIDAD,
+                                Precio = dp.DET_PRECIO,
+                                Subtotal = dp.DET_SUBTOTAL,
+                                Comentarios = dp.DET_COMENTARIOS
+                            }).ToList();
+
+            ViewData["detalles"] = detalles;
 
             return View();
         }

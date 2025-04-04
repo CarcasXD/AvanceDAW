@@ -77,10 +77,11 @@
                                             <input type="hidden" name="nuevoEstado" value="En Preparación" />
                                             <button type="submit" class="btn btn-success">Comenzar Orden</button>
                                         </form>
-                                        <form>
+                                        @using (Html.BeginForm("verDetalle", "Cocina", FormMethod.Post))
+                                        {
                                             <input type="hidden" name="idPedido" value="@order.ID_PEDIDO" />
-                                            <button type="submit" class="btn btn-primary">Ver detalle</button>
-                                        </form>
+                                            <button type="submit" class="btn btn-primary ms-3">Ver detalle</button>
+                                        }
                                     </div>
                                 </div>
                             }
@@ -107,6 +108,11 @@
                                         <input type="hidden" name="nuevoEstado" value="Finalizado" />
                                         <button type="submit" class="btn btn-danger">Finalizar Orden</button>
                                     </form>
+                                    @using (Html.BeginForm("verDetalle", "Cocina", FormMethod.Post))
+                                    {
+                                        <input type="hidden" name="idPedido" value="@order.ID_PEDIDO" />
+                                        <button type="submit" class="btn btn-primary ms-3">Ver detalle</button>
+                                    }
                                 </div>
                             }
                         </div>

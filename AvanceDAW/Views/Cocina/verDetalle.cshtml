@@ -3,3 +3,22 @@
 *@
 @{
 }
+
+<div>
+    <h1>Detalle de orden No @ViewBag.idPedido</h1>
+</div>
+
+<div class="item-grid">
+    <!-- Tarjeta de producto 1 -->
+    @foreach (var item in (IEnumerable<dynamic>)ViewData["detalles"])
+    {
+        <div class="item-card">
+            <h3>@item.NombreItem</h3>
+            <p class="note">Descripción: @item.DescripcionItem</p>
+            <p class="note">Cantidad: @item.Cantidad</p>
+            <p class="note">Precio: $@item.Precio</p>
+            <p class="note">Subtotal: $@item.Subtotal</p>
+            <p class="note">Comentarios: @item.Comentarios</p>
+        </div>
+    }
+</div>
