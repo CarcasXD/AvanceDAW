@@ -1,0 +1,160 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Detalle Orden";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Cajas - Orden Detalle</title>
+    <style>
+        /* Fondo y tipografía generales */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f7f4d4; /* Color crema */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            padding: 20px;
+            font-size: 36px;
+            color: #333;
+        }
+
+        /* Contenedor principal de la orden centrado */
+        .order-container {
+            width: 80%;
+            max-width: 1000px; /* Ajusta si deseas un límite */
+            margin: 0 auto; /* Centra el contenedor horizontalmente */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Información de la orden (número y mesa) centrada */
+        .order-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .order-info h2 {
+                margin: 0 0 5px 0;
+                font-size: 24px;
+            }
+
+            .order-info p {
+                margin: 0;
+                font-size: 16px;
+                color: #666;
+            }
+
+        /* Grilla de tarjetas para los productos: flexbox para centrar */
+        .item-grid {
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            gap: 20px;
+            flex-wrap: wrap; /* Permite que los ítems salten a la siguiente línea si no caben */
+            margin-bottom: 20px;
+        }
+
+        /* Cada tarjeta de producto */
+        .item-card {
+            position: relative;
+            background-color: #fafafa;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            width: 150px; /* Fija un ancho para que todas tengan el mismo tamaño */
+        }
+
+        /* Checkbox en la esquina superior derecha */
+        .item-check {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Imagen del producto centrada */
+        .item-card img {
+            display: block;
+            margin: 0 auto 10px auto;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        /* Nombre del producto */
+        .item-card h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+        }
+
+        /* Nota o detalle del producto */
+        .note {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Contenedor de botones al final */
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Estilos para el botón */
+        button {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #495057;
+            }
+    </style>
+</head>
+<body>
+    <h1>Cajas</h1>
+
+    <div class="order-container">
+        <!-- Información de la orden -->
+        <div class="order-info">
+            <h1>Detalle de la Mesa</h1>
+            <p>Pedido # @ViewBag.PedidoId</p>
+            <p>Mesa # @ViewBag.NumeroMesa</p>
+        </div>
+
+        <!-- Grilla de productos -->
+        <div class="item-grid">
+            <!-- Tarjeta de producto 1 -->
+            @foreach (var item in ViewBag.DetallePedido)
+            {
+                <div class="item-card">
+                    <h3>@item.NombreItem</h3>
+                    <p class="note">Descripción: @item.DescripcionItem</p>
+                    <p class="note">Cantidad: @item.Cantidad</p>
+                    <p class="note">Precio: $@item.Precio</p>
+                    <p class="note">Subtotal: $@item.Subtotal</p>
+                    <p class="note">Comentarios: @item.Comentarios</p>
+                </div>
+            }
+        </div>
+        <div>
+            @Html.ActionLink("Regresar", "Index", "Cajero", new { @class = "btn" })
+        </div>
+    </div>
+</body>
+</html>
+

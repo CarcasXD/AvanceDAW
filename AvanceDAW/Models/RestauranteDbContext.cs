@@ -20,12 +20,12 @@ namespace AvanceDAW.Models
         public DbSet<ESTADO_PEDIDO> ESTADO_PEDIDO { get; set; }
         public DbSet<PEDIDO> PEDIDO { get; set; }
         public DbSet<DETALLE_PEDIDO> DETALLE_PEDIDO { get; set; }
-        public DbSet<tipopago> TipoPago { get; set; }
-        public DbSet<factura> Facturas { get; set; }
-        public DbSet<detallefactura> DetalleFacturas { get; set; }
-        public DbSet<Menu_Items> MenuItems { get; set; }
+        public DbSet<tipopago> tipoPago { get; set; }
+        public DbSet<factura> factura { get; set; }
+        public DbSet<detallefactura> detallefactura { get; set; }
+        public DbSet<Menu_Items> Menu_Items { get; set; }
         public DbSet<PlatosCombos> PlatosCombos { get; set; }
-        public DbSet<Promociones_Items> PromocionesItems { get; set; }
+        public DbSet<Promociones_Items> Promociones_Items { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

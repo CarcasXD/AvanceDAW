@@ -95,7 +95,7 @@
                             <span class="orden">Orden @mesita.ID_PEDIDO</span>
                             <span class="mesa">Mesa #@mesita.NumeroMesa</span>
                         </div>
-                        <button class="btn" onclick="location.href='#'">Ver</button>
+                        @Html.ActionLink("Ver", "VerMesa", "Cajero", new { pedidoId = mesita.ID_PEDIDO, mesaNum = mesita.NumeroMesa }, new { @class = "btn" })
                     </div>
                 }
                 
@@ -112,9 +112,10 @@
                             <span class="orden">Orden @mesita.ID_PEDIDO</span>
                             <span class="mesa">Mesa #@mesita.NumeroMesa</span>
                         </div>
-                        <button class="btn" onclick="location.href='#'">Cobrar</button>
+                        @Html.ActionLink("Ver", "VerMesa", "Cajero", new { pedidoId = mesita.ID_PEDIDO, mesaNum = mesita.NumeroMesa }, new { @class = "btn" })
                     </div>
                 }
+
                 
             </div>
         </div>
