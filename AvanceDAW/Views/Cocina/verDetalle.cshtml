@@ -1,22 +1,84 @@
-﻿
-@{
+﻿@{
+    ViewBag.Title = "Detalle de Orden";
+    Layout = null;
 }
 
-<div>
-    <h1>Detalle de orden No @ViewBag.idPedido</h1>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f9f3e1;
+        }
 
-<div class="item-grid">
-    <!-- Tarjeta de producto 1 -->
-    @foreach (var item in (IEnumerable<dynamic>)ViewData["detalles"])
-    {
-        <div class="item-card">
-            <h3>@item.NombreItem</h3>
-            <p class="note">Descripción: @item.DescripcionItem</p>
-            <p class="note">Cantidad: @item.Cantidad</p>
-            <p class="note">Precio: $@item.Precio</p>
-            <p class="note">Subtotal: $@item.Subtotal</p>
-            <p class="note">Comentarios: @item.Comentarios</p>
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+        }
+
+        .card-header {
+            font-size: 1.3rem;
+            font-weight: bold;
+            background-color: #f8f9fa;
+        }
+
+        .card-body p {
+            margin: 5px 0;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .btn-return {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5">         
+            <a href="@Url.Action("Index", "Cocina")" class="btn btn-secondary btn-lg">
+                <img src="~/images/home-icon.png" alt="Regresar" style="width: 30px; height: 30px;">
+            </a>
+            <h1 class="text-center flex-grow-1 m-0">Detalle de orden No @ViewBag.idPedido</h1>
+            <div style="width: 70px;"></div>
         </div>
-    }
-</div>
+        <div class="row">
+            @foreach (var item in (IEnumerable<dynamic>)ViewData["detalles"])
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            @item.NombreItem
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Descripción:</strong> @item.DescripcionItem</p>
+                            <p><strong>Cantidad:</strong> @item.Cantidad</p>
+                            <p><strong>Precio:</strong> $@item.Precio</p>
+                            <p><strong>Subtotal:</strong> $@item.Subtotal</p>
+                            <p><strong>Comentarios:</strong> @item.Comentarios</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

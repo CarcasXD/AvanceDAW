@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AvanceDAW.Models;
-using AvanceDAW.Models.ViewModels;
+
 using System.Linq;
 using AvanceDAW.Controllers; 
 
