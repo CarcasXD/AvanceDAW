@@ -11,15 +11,15 @@
     <meta charset="utf-8">
     <title>Cajas - Orden Detalle</title>
     <style>
-        /* Fondo y tipografía generales */
+        
         body {
             margin: 0;
             padding: 0;
-            background-color: #f7f4d4; /* Color crema */
+            background-color: #f7f4d4;
             font-family: Arial, sans-serif;
         }
 
-        /* Título principal */
+        
         h1 {
             text-align: center;
             padding: 20px;
@@ -27,18 +27,18 @@
             color: #333;
         }
 
-        /* Contenedor principal de la orden centrado */
+        
         .order-container {
             width: 80%;
-            max-width: 1000px; /* Ajusta si deseas un límite */
-            margin: 0 auto; /* Centra el contenedor horizontalmente */
+            max-width: 1000px; 
+            margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        /* Información de la orden (número y mesa) centrada */
+        
         .order-info {
             text-align: center;
             margin-bottom: 20px;
@@ -55,16 +55,16 @@
                 color: #666;
             }
 
-        /* Grilla de tarjetas para los productos: flexbox para centrar */
+        
         .item-grid {
             display: flex;
-            justify-content: center; /* Centra horizontalmente */
+            justify-content: center; 
             gap: 20px;
-            flex-wrap: wrap; /* Permite que los ítems salten a la siguiente línea si no caben */
+            flex-wrap: wrap; 
             margin-bottom: 20px;
         }
 
-        /* Cada tarjeta de producto */
+      
         .item-card {
             position: relative;
             background-color: #fafafa;
@@ -72,17 +72,17 @@
             border-radius: 6px;
             padding: 10px;
             text-align: center;
-            width: 150px; /* Fija un ancho para que todas tengan el mismo tamaño */
+            width: 150px; 
         }
 
-        /* Checkbox en la esquina superior derecha */
+       
         .item-check {
             position: absolute;
             top: 10px;
             right: 10px;
         }
 
-        /* Imagen del producto centrada */
+        
         .item-card img {
             display: block;
             margin: 0 auto 10px auto;
@@ -91,26 +91,25 @@
             object-fit: cover;
         }
 
-        /* Nombre del producto */
         .item-card h3 {
             margin: 0 0 5px 0;
             font-size: 16px;
         }
 
-        /* Nota o detalle del producto */
+        
         .note {
             font-size: 14px;
             color: #666;
         }
 
-        /* Contenedor de botones al final */
+       
         .buttons {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
         }
 
-        /* Estilos para el botón */
+        
         button {
             background-color: #343a40;
             color: #fff;
@@ -129,16 +128,13 @@
     <h1>Cajas</h1>
 
     <div class="order-container">
-        <!-- Información de la orden -->
         <div class="order-info">
            <h1>Detalle de la Mesa</h1>
             <p>Pedido # @ViewBag.PedidoId</p>
             <p>Mesa # @ViewBag.NumeroMesa</p>
         </div>
 
-        <!-- Grilla de productos -->
         <div class="item-grid">
-            <!-- Tarjeta de producto 1 -->
             @foreach (var item in ViewBag.DetallePedido)
             {
                 <div class="item-card">
