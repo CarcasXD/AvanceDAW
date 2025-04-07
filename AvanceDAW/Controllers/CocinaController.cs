@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AvanceDAW.Models;
+using AvanceDAW.Models.ViewModels;
 using System.Linq;
 using AvanceDAW.Controllers; 
 
@@ -104,7 +105,7 @@ namespace AvanceDAW.Controllers
 
         public IActionResult verDetalle()
         {
-            return View();
+            return View(); 
         }
 
         [HttpPost]
@@ -142,6 +143,8 @@ namespace AvanceDAW.Controllers
 
             return View();
         }
+
+
 
     }
 

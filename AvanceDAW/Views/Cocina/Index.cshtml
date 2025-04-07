@@ -103,6 +103,7 @@
                                 <div class="list-group-item">
                                     <span class="star-icon">&#9733;</span> <strong>Orden @order.ID_PEDIDO</strong><br />
                                     Mesa #@order.NumeroMesa
+                                    <div class="d-flex justify-content-center">
                                     <form method="post" action="@Url.Action("CambiarEstado", "Cocina")" onsubmit="return confirm('¿Estás seguro de finalizar esta orden?');">
                                         <input type="hidden" name="idPedido" value="@order.ID_PEDIDO" />
                                         <input type="hidden" name="nuevoEstado" value="Finalizado" />
@@ -113,6 +114,7 @@
                                         <input type="hidden" name="idPedido" value="@order.ID_PEDIDO" />
                                         <button type="submit" class="btn btn-primary ms-3">Ver detalle</button>
                                     }
+                                    </div>
                                 </div>
                             }
                         </div>

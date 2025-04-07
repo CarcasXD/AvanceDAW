@@ -23,4 +23,8 @@
     <_ContentIncludedByDefault Remove="Views\Cajero\CobrarMesa.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
