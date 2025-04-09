@@ -135,7 +135,10 @@ namespace AvanceDAW.Controllers
                                                   promocion != null ? promocion.Descripcion : "N/A",
                                 Cantidad = dp.DET_CANTIDAD,
                                 EstadoPedido = ep.ESTADO_NOMBRE,
-                                Comentarios = dp.DET_COMENTARIOS
+                                Comentarios = dp.DET_COMENTARIOS,
+                                idPedido = dp.ID_PEDIDO,
+                                idMenu = dp.ID_MENU, 
+                                idEstado = dp.ID_ESTADOPEDIDO
                             }).ToList();
 
             ViewData["detalles"] = detalles;
@@ -145,6 +148,36 @@ namespace AvanceDAW.Controllers
 
 
         [HttpPost]
+        public async Task<IActionResult> cambiarEstadoPlatillo(int idPedido, int idMenu, int idEstado) 
+        {
+            var detallePedido = _context.DETALLE_PEDIDO.FirstOrDefault(p => p.ID_PEDIDO == idPedido && p.ID_MENU == idMenu);
+
+            int nuevoEstado = 0;
+
+            if (detallePedido != null) 
+            {
+                if (idEstado < 2)
+                {
+                    nuevoEstado = idEstado + 1;
+                }
+                else if (idEstado == 3) 
+                {
+                    nuevoEstado = 3;
+                }
+
+                if (nuevoEstado == 0)
+                {
+                    nuevoEstado = 1; 
+                }
+
+                detallePedido.ID_ESTADOPEDIDO = nuevoEstado;
+                await _context.SaveChangesAsync();
+
+            }
+
+
+            return RedirectToAction("verDetalle", new {idPedido = idPedido});        
+        }
 
     }
 

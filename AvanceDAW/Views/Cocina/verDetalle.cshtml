@@ -66,11 +66,17 @@
                         <div class="card-body">
                             <p><strong>Descripción:</strong> @item.DescripcionItem</p>
                             <p><strong>Cantidad:</strong> @item.Cantidad</p>
-                            <button class="btn  @(item.EstadoPedido == "Pendiente" ? "btn-danger" :
-                                                  item.EstadoPedido == "En Preparación" ? "btn-warning" :
-                                                  item.EstadoPedido == "Completado" ? "btn-success" : "btn-secondary")">
-                                @item.EstadoPedido
-                            </button>
+                            <form method="post" action="@Url.Action("cambiarEstadoPlatillo", "Cocina")" onsubmit="return confirm('¿Está seguro de cambiar el estado del platillo?');">
+                                <input type="hidden" name="idPedido" value="@item.idPedido" />
+                                <input type="hidden" name="idMenu" value="@item.idPedido" />
+                                <input type="hidden" name="idEstado" value="@item." />
+                                <button type="submit" class="btn @(item.EstadoPedido == "Pendiente" ? "btn-danger" :
+                                                                   item.EstadoPedido == "En Preparación" ? "btn-warning" :
+                                                                   item.EstadoPedido == "Completado" ? "btn-success" : "btn-secondary")"
+                                >
+                                    @item.EstadoPedido
+                                </button>
+                            </form>
                             <p><strong>Comentarios:</strong> @item.Comentarios</p>
                         </div>
                     </div>
