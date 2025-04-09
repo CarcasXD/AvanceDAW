@@ -119,7 +119,7 @@ namespace AvanceDAW.Controllers
                             where dp.ID_PEDIDO == pedidoId
                             select new
                             {
-                                MenuItemId = mi.MenuItemId,
+                                
                                 TipoItem = plato != null ? "Plato" :
                                            combo != null ? "Combo" :
                                            promocion != null ? "Promocion" : "Desconocido",
@@ -152,6 +152,7 @@ namespace AvanceDAW.Controllers
 
             return View();
         }
+
 
 
 
