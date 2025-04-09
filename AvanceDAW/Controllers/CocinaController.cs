@@ -87,7 +87,6 @@ namespace AvanceDAW.Controllers
         [HttpPost]
         public async Task<IActionResult> CambiarEstado(int idPedido, string nuevoEstado)
         {
-            Console.WriteLine("Llegue");
             var pedido = _context.PEDIDO.FirstOrDefault(p => p.ID_PEDIDO == idPedido);
 
             if (pedido != null)
@@ -121,6 +120,7 @@ namespace AvanceDAW.Controllers
                             from combo in combos.DefaultIfEmpty()
                             join pr in _context.Promociones on mi.MenuItemId equals pr.PromocionID into promociones
                             from promocion in promociones.DefaultIfEmpty()
+                            join ep in _context.ESTADO_PEDIDO on dp.ID_ESTADOPEDIDO equals ep.ID_ESTADOPEDIDO
                             where dp.ID_PEDIDO == idPedido
                             select new
                             {
@@ -134,8 +134,7 @@ namespace AvanceDAW.Controllers
                                                   combo != null ? combo.Descripcion :
                                                   promocion != null ? promocion.Descripcion : "N/A",
                                 Cantidad = dp.DET_CANTIDAD,
-                                Precio = dp.DET_PRECIO,
-                                Subtotal = dp.DET_SUBTOTAL,
+                                EstadoPedido = ep.ESTADO_NOMBRE,
                                 Comentarios = dp.DET_COMENTARIOS
                             }).ToList();
 
@@ -145,6 +144,7 @@ namespace AvanceDAW.Controllers
         }
 
 
+        [HttpPost]
 
     }
 
