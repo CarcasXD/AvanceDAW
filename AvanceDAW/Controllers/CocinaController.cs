@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using AvanceDAW.Models;
 
 using System.Linq;
@@ -150,18 +151,25 @@ namespace AvanceDAW.Controllers
         [HttpPost]
         public async Task<IActionResult> cambiarEstadoPlatillo(int idPedido, int idMenu, int idEstado) 
         {
-            Console.Write("Llegue aqui ;)");
-            var detallePedido = _context.DETALLE_PEDIDO.FirstOrDefault(dp => dp.ID_PEDIDO == idPedido && dp.ID_MENU == idMenu);
+            Console.WriteLine(idPedido + " " + idMenu);
+            var detallePedido = await _context.DETALLE_PEDIDO
+                                      .Where(dp => dp.ID_PEDIDO == idPedido && dp.ID_MENU == idMenu)
+                                      .FirstOrDefaultAsync(); 
 
             int nuevoEstado = 0;
 
             if (detallePedido != null) 
             {
-                if (idEstado < 2)
+                Console.WriteLine($"Detalle encontrado: {detallePedido.ID_PEDIDO}, {detallePedido.ID_MENU}");
+                if (idEstado == 1)
                 {
-                    nuevoEstado = idEstado + 1;
+                    nuevoEstado = 2;
                 }
-                else if (idEstado == 3) 
+                else if (idEstado == 2) 
+                {
+                    nuevoEstado = 3;
+                }
+                else if (idEstado == 3)
                 {
                     nuevoEstado = 3;
                 }
@@ -171,13 +179,18 @@ namespace AvanceDAW.Controllers
                     nuevoEstado = 1; 
                 }
 
+                Console.WriteLine($"Estado actual: {nuevoEstado}");
                 detallePedido.ID_ESTADOPEDIDO = nuevoEstado;
                 await _context.SaveChangesAsync();
 
             }
+            else
+            {
+                Console.WriteLine("No se encontró el detalle pedido.");
+            }
 
 
-            return RedirectToAction("verDetalle", new {idPedido = idPedido});        
+            return RedirectToAction("Index");        
         }
 
     }

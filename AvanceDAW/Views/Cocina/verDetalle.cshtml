@@ -68,8 +68,8 @@
                             <p><strong>Cantidad:</strong> @item.Cantidad</p>
                             <form method="post" action="@Url.Action("cambiarEstadoPlatillo", "Cocina")" onsubmit="return confirm('¿Está seguro de cambiar el estado del platillo?');">
                                 <input type="hidden" name="idPedido" value="@item.idPedido" />
-                                <input type="hidden" name="idMenu" value="@item.idPedido" />
-                                <input type="hidden" name="idEstado" value="@item." />
+                                <input type="hidden" name="idMenu" value="@item.idMenu" />
+                                <input type="hidden" name="idEstado" value="@item.idEstado" />
                                 <button type="submit" class="btn @(item.EstadoPedido == "Pendiente" ? "btn-danger" :
                                                                    item.EstadoPedido == "En Preparación" ? "btn-warning" :
                                                                    item.EstadoPedido == "Completado" ? "btn-success" : "btn-secondary")"

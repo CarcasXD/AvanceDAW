@@ -27,6 +27,11 @@ namespace AvanceDAW.Models
 
         [Display(Name = "ID Estado Pedido")]
         public int ID_ESTADOPEDIDO { get; set; }
+
+        public int EstadoPedidoID_ESTADOPEDIDO { get; set; }
+        public int MenuItemsMenuItemId { get; set; }
+        public int PEDIDOID_PEDIDO { get; set; }
+
         public virtual ESTADO_PEDIDO EstadoPedido { get; set; }
     }
 }
