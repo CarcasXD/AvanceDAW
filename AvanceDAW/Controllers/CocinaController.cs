@@ -150,7 +150,9 @@ namespace AvanceDAW.Controllers
         [HttpPost]
         public async Task<IActionResult> cambiarEstadoPlatillo(int idPedido, int idMenu, int idEstado) 
         {
-            var detallePedido = _context.DETALLE_PEDIDO.FirstOrDefault(p => p.ID_PEDIDO == idPedido && p.ID_MENU == idMenu);
+            var detallePedido = (from dp in _context.DETALLE_PEDIDO
+                                 where dp.ID_PEDIDO == idPedido && dp.ID_MENU == idMenu
+                                 select dp).FirstOrDefault();
 
             int nuevoEstado = 0;
 
