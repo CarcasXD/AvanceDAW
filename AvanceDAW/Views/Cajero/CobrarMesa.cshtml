@@ -121,7 +121,7 @@
             <p>Mesa # @ViewBag.NumeroMesa</p>
         </div>
 
-        <form action="@Url.Action("GenerarFactura", "Cajero")" method="post">
+        <form action="@Url.Action("GenerarFactura", "Cajero") " method="post">
             <div class="item-grid">
                 @foreach (var item in ViewBag.DetallePedido)
                 {
