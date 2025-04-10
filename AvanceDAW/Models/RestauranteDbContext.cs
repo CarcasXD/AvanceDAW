@@ -21,7 +21,7 @@ namespace AvanceDAW.Models
         public DbSet<ESTADO_PEDIDO> ESTADO_PEDIDO { get; set; }
         public DbSet<PEDIDO> PEDIDO { get; set; }
         public DbSet<DETALLE_PEDIDO> DETALLE_PEDIDO { get; set; }
-        public DbSet<tipopago> tipoPago { get; set; }
+        public DbSet<tipopago> tipopago { get; set; }
         public DbSet<factura> factura { get; set; }
         public DbSet<detallefactura> detallefactura { get; set; }
         public DbSet<Menu_Items> Menu_Items { get; set; }
