@@ -121,7 +121,11 @@
             <p>Mesa # @ViewBag.NumeroMesa</p>
         </div>
 
-        <form action="@Url.Action("GenerarFactura", "Cajero") " method="post">
+        @using (Html.BeginForm("GenerarFactura", "Cajero", FormMethod.Post))
+        {
+            <input type="hidden" name="pedidoId" value="@ViewBag.PedidoId" />
+            <input type="hidden" name="mesaNum" value="@ViewBag.NumeroMesa" />
+
             <div class="item-grid">
                 @foreach (var item in ViewBag.DetallePedido)
                 {
@@ -146,7 +150,8 @@
             <div>
                 @Html.ActionLink("Regresar", "Index", "Cajero", new { @class = "btn" })
             </div>
-        </form>
+        }
+
     </div>
 </body>
 </html>
