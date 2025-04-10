@@ -6,18 +6,18 @@ namespace AvanceDAW.Models
     {
         [Key]
         [Display(Name = "ID Factura")]
-        public int ID { get; set; }
+        public int id { get; set; }
 
         [Display(Name = "ID Plato")]
-        public int? PlatoID { get; set; }
+        public int? plato_id { get; set; }
 
         [Display(Name = "ID Combo")] 
-        public int? ComboID { get; set; }
+        public int? combo_id { get; set; }
 
         [Display(Name = "ID Factura")]
-        public int FacturaID { get; set; }
+        public int? factura_id { get; set; }
 
         [Display(Name = "Subtotal")]
-        public decimal Subtotal { get; set; }
+        public decimal? subtotal { get; set; }
     }
 }

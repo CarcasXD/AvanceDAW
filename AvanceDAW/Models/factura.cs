@@ -5,16 +5,16 @@ namespace AvanceDAW.Models
     public class factura
     {
         [Key]
-        public int ID { get; set; }
+        public int id { get; set; }
 
-        public int PedidoID { get; set; }
+        public int pedido_id { get; set; }
 
-        public DateTime Fecha { get; set; }
+        public DateTime? fecha { get; set; }
 
-        public decimal Total { get; set; }
+        public decimal? total { get; set; }
 
-        public int TipoPagoID { get; set; }
+        public int? tipopago_id { get; set; }
 
-        public int EmpleadoID { get; set; }
+        public int? empleado_id { get; set; }
     }
 }

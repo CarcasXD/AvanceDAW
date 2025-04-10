@@ -152,9 +152,9 @@ namespace AvanceDAW.Controllers
         public async Task<IActionResult> cambiarEstadoPlatillo(int idPedido, int idMenu, int idEstado) 
         {
             Console.WriteLine(idPedido + " " + idMenu);
-            var detallePedido = await _context.DETALLE_PEDIDO
+            var detallePedido =  _context.DETALLE_PEDIDO
                                       .Where(dp => dp.ID_PEDIDO == idPedido && dp.ID_MENU == idMenu)
-                                      .FirstOrDefaultAsync(); 
+                                      .FirstOrDefault(); 
 
             int nuevoEstado = 0;
 
@@ -179,8 +179,9 @@ namespace AvanceDAW.Controllers
                     nuevoEstado = 1; 
                 }
 
-                Console.WriteLine($"Estado actual: {nuevoEstado}");
+                Console.WriteLine($"Estado a enviar: {nuevoEstado}");
                 detallePedido.ID_ESTADOPEDIDO = nuevoEstado;
+                
                 await _context.SaveChangesAsync();
 
             }

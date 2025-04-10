@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace AvanceDAW.Models
 {
@@ -7,7 +8,7 @@ namespace AvanceDAW.Models
         [Key]
         [Display(Name = "ID Pedido")]
         public int ID_PEDIDO { get; set; }
-
+        
         [Display(Name = "ID Menú")]
         public int ID_MENU { get; set; }
 
