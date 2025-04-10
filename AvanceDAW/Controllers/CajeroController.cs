@@ -184,13 +184,31 @@ namespace AvanceDAW.Controllers
                                              promocion != null ? promocion.Descripcion : "N/A",
                                 Subtotal = dp.DET_SUBTOTAL,
                                 PlatoId = plato != null ? plato.PlatoID : (int?)null,
-                                ComboId = combo != null ? combo.ComboID : (int?)null
+                                ComboId = combo != null ? combo.ComboID : (int?)null,
+                                DetalleId = dp.ID_ESTADOPEDIDO
                             }).ToList();
             
 
             foreach (var item in detalles)
             {
                 total += item.Subtotal;
+
+                var detalle = _context.DETALLE_PEDIDO.FirstOrDefault(dp => dp.ID_ESTADOPEDIDO == item.DetalleId);
+                if (detalle != null)
+                {
+                    detalle.ID_ESTADOPEDIDO = 4;
+                }
+            }
+
+            var detallesPedidoDelPedido = _context.DETALLE_PEDIDO.Where(dp => dp.ID_PEDIDO == pedidoId).ToList();
+            if (detallesPedidoDelPedido.All(dp => dp.ID_ESTADOPEDIDO == 4))
+            {
+                
+                var pedido = _context.PEDIDO.FirstOrDefault(p => p.ID_PEDIDO == pedidoId);
+                if (pedido != null)
+                {
+                    pedido.ID_ESTADOPEDIDO = 4; 
+                }
             }
 
             var Factura = new factura
@@ -199,7 +217,7 @@ namespace AvanceDAW.Controllers
                 pedido_id = pedidoId,
                 fecha = DateTime.Now,
                 total = total,
-                tipopago_id = TipoDePagoId, 
+                tipopago_id = TipoDePagoId , 
                 empleado_id = 1
             };
 
@@ -227,9 +245,7 @@ namespace AvanceDAW.Controllers
         [HttpPost]
         public IActionResult GenerarFactura(int pedidoId, int mesaNum, List<int> selectedItems, int TipoDePagoId)
         {
-            decimal total = 0;   
-            
-
+            decimal total = 0;              
             var detallesSeleccionados = (from dp in _context.DETALLE_PEDIDO
                                          join mi in _context.Menu_Items on dp.ID_MENU equals mi.MenuItemId
                                          join pl in _context.Platos on mi.MenuItemId equals pl.PlatoID into platos
@@ -250,11 +266,18 @@ namespace AvanceDAW.Controllers
                                                           promocion != null ? promocion.Descripcion : "N/A",
                                              Subtotal = dp.DET_SUBTOTAL,
                                              PlatoId = plato != null ? plato.PlatoID : (int?)null,
-                                             ComboId = combo != null ? combo.ComboID : (int?)null
+                                             ComboId = combo != null ? combo.ComboID : (int?)null,
+                                             DetalleId = dp.ID_ESTADOPEDIDO
                                          }).ToList();
             foreach (var item in detallesSeleccionados)
             {
                 total += item.Subtotal;
+
+                var detalle = _context.DETALLE_PEDIDO.FirstOrDefault(dp => dp.ID_ESTADOPEDIDO == item.DetalleId);
+                if (detalle != null)
+                {
+                    detalle.ID_ESTADOPEDIDO = 4;
+                }
             }
 
             var Factura = new factura
@@ -287,6 +310,45 @@ namespace AvanceDAW.Controllers
             return RedirectToAction("FacturaGenerada", new { facturaId = Factura.id });
         }
 
+        public IActionResult FacturaGenerada(int facturaId)
+        {
+            var factura = (from f in _context.factura
+                           where f.id == facturaId
+                           select new
+                           {
+                               f.id,
+                               f.pedido_id,
+                               f.fecha,
+                               f.total,
+                               f.tipopago_id,
+                               f.empleado_id,
+                               TipoPago = _context.tipopago.FirstOrDefault(t => t.id == f.tipopago_id).tipo,
+                               Empleado = _context.Empleados.FirstOrDefault(e => e.EmpleadoID == f.empleado_id).Nombre
+                           }).FirstOrDefault();
+
+            if (factura == null)
+            {
+                return NotFound();
+            }
+
+            var detallesFactura = (from df in _context.detallefactura
+                                   join p in _context.Platos on df.plato_id equals p.PlatoID into platos
+                                   from plato in platos.DefaultIfEmpty()
+                                   join c in _context.Combos on df.combo_id equals c.ComboID into combos
+                                   from combo in combos.DefaultIfEmpty()
+                                   where df.factura_id == facturaId
+                                   select new
+                                   {
+                                       Producto = plato != null ? plato.Nombre : combo.Descripcion,
+                                       Precio = plato != null ? plato.Precio : combo.Precio,
+                                       Subtotal = df.subtotal
+                                   }).ToList();
+
+            ViewBag.Factura = factura;
+            ViewBag.DetallesFactura = detallesFactura;
+
+            return View();
+        }
 
 
 

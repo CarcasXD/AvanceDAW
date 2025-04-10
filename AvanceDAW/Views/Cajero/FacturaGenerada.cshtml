@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Factura Generada";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Factura Generada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f4d4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #333;
+        }
+
+        .factura-info,
+        .factura-details {
+            margin-bottom: 20px;
+        }
+
+            .factura-info p,
+            .factura-details p {
+                font-size: 16px;
+                color: #666;
+            }
+
+            .factura-details table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            .factura-details th,
+            .factura-details td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .factura-details th {
+                background-color: #f2f2f2;
+            }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #495057;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Factura Generada</h1>
+
+        <div class="factura-info">
+            <p><strong>Factura ID:</strong> @ViewBag.Factura.id</p>
+            <p><strong>Pedido ID:</strong> @ViewBag.Factura.pedido_id</p>
+            <p><strong>Fecha:</strong> @ViewBag.Factura.fecha</p>
+            <p><strong>Tipo de Pago:</strong> @ViewBag.Factura.tipopago</p>
+            <p><strong>Empleado:</strong> @ViewBag.Factura.Empleado</p>
+        </div>
+
+        <div class="factura-details">
+            <h3>Detalles de la Factura</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var detalle in ViewBag.DetallesFactura)
+                    {
+                        <tr>
+                            <td>@detalle.Producto</td>
+                            <td>$@detalle.Precio</td>
+                            <td>$@detalle.Subtotal</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="total">
+                <p><strong>Total:</strong> $@ViewBag.Factura.total</p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="@Url.Action("Index", "Cajero")" class="btn">Volver a la Página Principal</a>
+        </div>
+    </div>
+</body>
+</html>
