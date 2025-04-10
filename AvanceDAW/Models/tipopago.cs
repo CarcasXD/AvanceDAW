@@ -6,10 +6,10 @@ namespace AvanceDAW.Models
     {
         [Key]
         [Display(Name = "ID Tipo de Pago")]
-        public int ID { get; set; }
+        public int id { get; set; }
 
         [Display(Name = "Tipo de Pago")]
         [Required(ErrorMessage = "El tipo de pago es obligatorio")] 
-        public string Tipo { get; set; }
+        public string tipo { get; set; }
     }
 }

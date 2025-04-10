@@ -1,5 +1,6 @@
 ﻿using AvanceDAW.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 
 namespace AvanceDAW.Controllers
@@ -99,6 +100,7 @@ namespace AvanceDAW.Controllers
 
         public IActionResult CobrarMesa(int pedidoId, int mesaNum)
         {
+            var tiposDePago = _context.tipopago.ToList();
 
             var pedido = (from p in _context.PEDIDO
                           join m in _context.Mesas on p.ID_MESA equals m.MesaID
@@ -136,6 +138,9 @@ namespace AvanceDAW.Controllers
                                 Comentarios = dp.DET_COMENTARIOS
                             }).ToList();
 
+            
+            ViewData["TiposDePago"] = new SelectList(tiposDePago, "id", "tipo");
+
             if (pedido != null)
             {
                 ViewBag.PedidoId = pedido.PedidoId;
@@ -155,7 +160,7 @@ namespace AvanceDAW.Controllers
         }
 
         [HttpGet]
-        public IActionResult GenerarFactura(int pedidoId, int mesaNum)
+        public IActionResult GenerarFactura(int pedidoId, int mesaNum, int TipoDePagoId)
         {
 
             decimal total = 0;
@@ -181,6 +186,7 @@ namespace AvanceDAW.Controllers
                                 PlatoId = plato != null ? plato.PlatoID : (int?)null,
                                 ComboId = combo != null ? combo.ComboID : (int?)null
                             }).ToList();
+            
 
             foreach (var item in detalles)
             {
@@ -193,7 +199,7 @@ namespace AvanceDAW.Controllers
                 pedido_id = pedidoId,
                 fecha = DateTime.Now,
                 total = total,
-                tipopago_id = 1, 
+                tipopago_id = TipoDePagoId, 
                 empleado_id = 1
             };
 
@@ -219,13 +225,10 @@ namespace AvanceDAW.Controllers
         }
 
         [HttpPost]
-        public IActionResult GenerarFactura(int pedidoId, int mesaNum, List<int> selectedItems)
+        public IActionResult GenerarFactura(int pedidoId, int mesaNum, List<int> selectedItems, int TipoDePagoId)
         {
             decimal total = 0;   
-            if (selectedItems == null || selectedItems.Count == 0)
-            {
-                return RedirectToAction("GenerarFactura", new { pedidoId = pedidoId, mesaNum = mesaNum });
-            }
+            
 
             var detallesSeleccionados = (from dp in _context.DETALLE_PEDIDO
                                          join mi in _context.Menu_Items on dp.ID_MENU equals mi.MenuItemId
@@ -259,7 +262,7 @@ namespace AvanceDAW.Controllers
                 pedido_id = pedidoId,
                 fecha = DateTime.Now,
                 total = total,
-                tipopago_id = 1,
+                tipopago_id = TipoDePagoId,
                 empleado_id = 1
             };
 

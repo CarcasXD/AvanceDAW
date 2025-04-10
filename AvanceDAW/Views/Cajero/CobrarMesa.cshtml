@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Cobrar Mesa";
     Layout = null;
+
 }
 
 <!DOCTYPE html>
@@ -109,6 +110,20 @@
             button:hover {
                 background-color: #495057;
             }
+
+        .dropdown-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -126,6 +141,13 @@
             <input type="hidden" name="pedidoId" value="@ViewBag.PedidoId" />
             <input type="hidden" name="mesaNum" value="@ViewBag.NumeroMesa" />
 
+            <div class="dropdown-container">
+                <div class="form-group">
+                    @Html.Label("TipoDePagoId", "Tipo de Pago:")
+                    @Html.DropDownList("TipoDePagoId", (SelectList)ViewData["TiposDePago"], " ", new { @class = "form-control" })
+                </div>
+            </div>
+
             <div class="item-grid">
                 @foreach (var item in ViewBag.DetallePedido)
                 {
@@ -142,10 +164,10 @@
                     </div>
                 }
             </div>
-
+            
             <div class="buttons">
-                @Html.ActionLink("Generar Factura Total", "GenerarFactura", "Cajero", new { pedidoId = ViewBag.PedidoId, mesaNum = ViewBag.NumeroMesa }, new { @class = "btn" })
-                <button type="submit" class="btn">Generar Factura Seleccionada</button>
+                @Html.ActionLink("Generar Factura Total", "GenerarFactura", "Cajero", new { pedidoId = ViewBag.PedidoId, mesaNum = ViewBag.NumeroMesa }, new { @class = "btn" })<br />
+                <button type="submit" class="btn">Generar Factura Individual</button>
             </div>
             <div>
                 @Html.ActionLink("Regresar", "Index", "Cajero", new { @class = "btn" })
