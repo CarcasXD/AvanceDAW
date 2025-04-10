@@ -34,6 +34,9 @@ namespace AvanceDAW.Models
             modelBuilder.Entity<PlatosCombos>()
                 .HasKey(pc => new { pc.ComboID, pc.PlatoID });  // Clave primaria compuesta
 
+            modelBuilder.Entity<DETALLE_PEDIDO>()
+                .HasKey(dp => new { dp.ID_PEDIDO, dp.ID_MENU });  // Clave primaria compuesta
+
             // Configurar la relación con MESAS
             modelBuilder.Entity<PEDIDO>()
                 .HasOne(p => p.Mesa)

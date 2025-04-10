@@ -5,7 +5,6 @@ namespace AvanceDAW.Models
 {
     public class DETALLE_PEDIDO
     {
-        [Key]
         [Display(Name = "ID Pedido")]
         public int ID_PEDIDO { get; set; }
         

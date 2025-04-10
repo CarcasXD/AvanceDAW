@@ -93,6 +93,7 @@ namespace AvanceDAW.Controllers
             if (pedido != null)
             {
                 var estado = _context.ESTADO_PEDIDO.FirstOrDefault(e => e.ESTADO_NOMBRE == nuevoEstado);
+
                 if (estado != null)
                 {
                     pedido.ID_ESTADOPEDIDO = estado.ID_ESTADOPEDIDO;
@@ -149,18 +150,26 @@ namespace AvanceDAW.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> cambiarEstadoPlatillo(int idPedido, int idMenu, int idEstado) 
+        public async Task<IActionResult> cambiarEstadoPlatillo(int idPedido, int idMenu, int idEstado, string Comentarios,
+                                                                int Cantidad) 
         {
-            Console.WriteLine(idPedido + " " + idMenu);
-            var detallePedido =  _context.DETALLE_PEDIDO
-                                      .Where(dp => dp.ID_PEDIDO == idPedido && dp.ID_MENU == idMenu)
-                                      .FirstOrDefault(); 
+            Console.WriteLine(idPedido + " " + idMenu + " " + Comentarios + " " + Cantidad);
+            
+            var detallePedido = (from d in _context.DETALLE_PEDIDO
+                                 where d.ID_PEDIDO == idPedido
+                                 && d.ID_MENU == idMenu
+                                 && d.DET_COMENTARIOS == Comentarios
+                                 && d.DET_CANTIDAD == Cantidad
+                                 && d.ID_ESTADOPEDIDO == idEstado
+                                 select d).FirstOrDefault(); 
 
             int nuevoEstado = 0;
 
             if (detallePedido != null) 
             {
-                Console.WriteLine($"Detalle encontrado: {detallePedido.ID_PEDIDO}, {detallePedido.ID_MENU}");
+                Console.WriteLine($"Detalle encontrado: {detallePedido.ID_PEDIDO}, {detallePedido.ID_MENU}," +
+                    $" {detallePedido.DET_COMENTARIOS}, {detallePedido.DET_CANTIDAD}, {detallePedido.ID_ESTADOPEDIDO}");
+
                 if (idEstado == 1)
                 {
                     nuevoEstado = 2;

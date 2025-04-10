@@ -70,6 +70,8 @@
                                 <input type="hidden" name="idPedido" value="@item.idPedido" />
                                 <input type="hidden" name="idMenu" value="@item.idMenu" />
                                 <input type="hidden" name="idEstado" value="@item.idEstado" />
+                                <input type="hidden" name="Comentarios" value="@item.Comentarios"/>
+                                <input type="hidden" name="Cantidad" value="@item.Cantidad"/>
                                 <button type="submit" class="btn @(item.EstadoPedido == "Pendiente" ? "btn-danger" :
                                                                    item.EstadoPedido == "En Preparación" ? "btn-warning" :
                                                                    item.EstadoPedido == "Completado" ? "btn-success" : "btn-secondary")"
