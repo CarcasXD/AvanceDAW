@@ -143,8 +143,15 @@
 
             <div class="dropdown-container">
                 <div class="form-group">
-                    @Html.Label("TipoDePagoId", "Tipo de Pago:")
-                    @Html.DropDownList("TipoDePagoId", (SelectList)ViewData["TiposDePago"], " ", new { @class = "form-control" })
+                    <label>Seleccione el tipo de pago: </label>
+                    <select name="TipoDePagoId" class="form-control">
+                        <option value="">Selecciona el tipo de pago</option>
+                        @foreach (var item in (SelectList)ViewBag.TiposDePago)
+                        {
+                            <option value="@item.Text">@item.Text</option>
+                        }
+                    </select>
+
                 </div>
             </div>
 

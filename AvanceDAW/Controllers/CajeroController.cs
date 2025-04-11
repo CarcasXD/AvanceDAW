@@ -138,8 +138,8 @@ namespace AvanceDAW.Controllers
                                 Comentarios = dp.DET_COMENTARIOS
                             }).ToList();
 
-            
-            ViewData["TiposDePago"] = new SelectList(tiposDePago, "id", "tipo");
+
+            ViewBag.TiposDePago = new SelectList(tiposDePago, "id", "tipo");
 
             if (pedido != null)
             {
@@ -162,8 +162,8 @@ namespace AvanceDAW.Controllers
         [HttpGet]
         public IActionResult GenerarFactura(int pedidoId, int mesaNum, int TipoDePagoId)
         {
-
             decimal total = 0;
+
             var detalles = (from dp in _context.DETALLE_PEDIDO
                             join mi in _context.Menu_Items on dp.ID_MENU equals mi.MenuItemId
                             join pl in _context.Platos on mi.MenuItemId equals pl.PlatoID into platos
@@ -184,45 +184,37 @@ namespace AvanceDAW.Controllers
                                              promocion != null ? promocion.Descripcion : "N/A",
                                 Subtotal = dp.DET_SUBTOTAL,
                                 PlatoId = plato != null ? plato.PlatoID : (int?)null,
-                                ComboId = combo != null ? combo.ComboID : (int?)null,
-                                DetalleId = dp.ID_ESTADOPEDIDO
+                                ComboId = combo != null ? combo.ComboID : (int?)null
                             }).ToList();
-            
 
             foreach (var item in detalles)
             {
                 total += item.Subtotal;
 
-                var detalle = _context.DETALLE_PEDIDO.FirstOrDefault(dp => dp.ID_ESTADOPEDIDO == item.DetalleId);
-                if (detalle != null)
-                {
-                    detalle.ID_ESTADOPEDIDO = 4;
-                }
+                
             }
 
             var detallesPedidoDelPedido = _context.DETALLE_PEDIDO.Where(dp => dp.ID_PEDIDO == pedidoId).ToList();
             if (detallesPedidoDelPedido.All(dp => dp.ID_ESTADOPEDIDO == 4))
             {
-                
                 var pedido = _context.PEDIDO.FirstOrDefault(p => p.ID_PEDIDO == pedidoId);
                 if (pedido != null)
                 {
-                    pedido.ID_ESTADOPEDIDO = 4; 
+                    pedido.ID_ESTADOPEDIDO = 4;
                 }
             }
-
+            Console.WriteLine("Id de pago: " + TipoDePagoId);
             var Factura = new factura
             {
-
                 pedido_id = pedidoId,
                 fecha = DateTime.Now,
                 total = total,
-                tipopago_id = TipoDePagoId , 
+                tipopago_id = 1,
                 empleado_id = 1
             };
 
             _context.factura.Add(Factura);
-            _context.SaveChanges(); 
+            _context.SaveChanges();
 
             foreach (var item in detalles)
             {
@@ -237,15 +229,18 @@ namespace AvanceDAW.Controllers
                 _context.detallefactura.Add(DetalleFactura);
             }
 
-            _context.SaveChanges(); 
+            _context.SaveChanges();
 
-            return RedirectToAction("FacturaGenerada", new { facturaId = Factura.id});
+            return RedirectToAction("FacturaGenerada", new { facturaId = Factura.id });
         }
+
 
         [HttpPost]
         public IActionResult GenerarFactura(int pedidoId, int mesaNum, List<int> selectedItems, int TipoDePagoId)
         {
-            decimal total = 0;              
+            decimal total = 0;
+
+
             var detallesSeleccionados = (from dp in _context.DETALLE_PEDIDO
                                          join mi in _context.Menu_Items on dp.ID_MENU equals mi.MenuItemId
                                          join pl in _context.Platos on mi.MenuItemId equals pl.PlatoID into platos
@@ -285,7 +280,7 @@ namespace AvanceDAW.Controllers
                 pedido_id = pedidoId,
                 fecha = DateTime.Now,
                 total = total,
-                tipopago_id = TipoDePagoId,
+                tipopago_id = 2,
                 empleado_id = 1
             };
 
